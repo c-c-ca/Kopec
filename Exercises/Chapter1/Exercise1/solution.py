@@ -14,11 +14,12 @@ class Fib7(Iterable[int]):
         return self
 
     def __next__(self) -> int:
+        val: int
         if self.count < 2:
-            val: int = self.count
+            val = self.count
         elif self.count < self.n:
             self.last, self.next = self.next, self.last + self.next
-            val: int = self.next
+            val = self.next
         else:
             raise StopIteration
 

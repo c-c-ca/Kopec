@@ -35,8 +35,8 @@ def fib_from_iter(it: Iterable):
 
 
 if __name__ == "__main__":
-    n = 5
-    number = 1000000
+    n: int = 5
+    number: int = 1000000
     # Measure functional implementations
     for i in range(2, 6):
         print(

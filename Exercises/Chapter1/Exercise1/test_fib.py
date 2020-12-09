@@ -1,12 +1,12 @@
 import unittest
 from fib6 import fib6
-from solution import Fibonacci
+from solution import Fib7
 
-class TestFibonacci(unittest.TestCase):
+class TestFib7(unittest.TestCase):
 
     def test_fib(self):
         n: int = 51
-        for i, j in zip(fib6(n), Fibonacci(n)):
+        for i, j in zip(fib6(n), Fib7(n)):
             self.assertEqual(i, j)
 
 

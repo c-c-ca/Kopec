@@ -8,18 +8,22 @@ class Fib7(Iterable[int]):
         self.n: int = n
 
     def __iter__(self) -> Iterator[int]:
-        self.curr: int = 0
+        self.count: int = 0
         self.last: int = 0
         self.next: int = 1
         return self
 
     def __next__(self) -> int:
-        if self.curr < self.n:
+        if self.count < 2:
+            val: int = self.count
+        elif self.count < self.n:
             self.last, self.next = self.next, self.last + self.next
-            self.curr += 1
-            return self.curr - 1 if self.curr < 3 else self.next
+            val: int = self.next
         else:
             raise StopIteration
+
+        self.count += 1
+        return val
 
 
 def fib_from_iter(it: Iterable):

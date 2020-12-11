@@ -17,14 +17,14 @@ class Stack(Generic[T]):
         return repr(self._container)
 
 
-num_discs: int = 50
+num_discs: int = 10
 num_towers: int = 5
 towers: List[Stack[int]] = [Stack() for _ in range(num_towers)]
 for i in range(1, num_discs + 1):
     towers[0].push(i)
 
 
-def hanoi_n(n: int, begin: Stack[int], end: Stack[int], *towers: Tuple[Stack[int]]) -> None:
+def hanoi_n(n: int, begin: Stack[int], end: Stack[int], *towers: Stack[int]) -> None:
     if n <= len(towers):
         for i in range(1, n):
             towers[i].push(begin.pop())
@@ -32,9 +32,9 @@ def hanoi_n(n: int, begin: Stack[int], end: Stack[int], *towers: Tuple[Stack[int
         for i in range(1, n):
             end.push(towers[n-i].pop())
     else:
-        hanoi_n(n - len(towers), begin, towers[0], *towers[1:], end)
+        hanoi_n(n - len(towers), begin, towers[0], end, *towers[1:])
         hanoi_n(len(towers), begin, end, *towers)
-        hanoi_n(n - len(towers), towers[0], end, *towers[1:], begin)
+        hanoi_n(n - len(towers), towers[0], end, begin, *towers[1:])
 
 
 if __name__ == "__main__":

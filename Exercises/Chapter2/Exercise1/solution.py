@@ -1,12 +1,14 @@
-from random import randint
+import random
 from timeit import timeit
 from textwrap import dedent
 from typing import List
 from generic_search import linear_contains, binary_contains
 
 
+random.seed(0)
+
 search_space: List[int] = list(range(1000000))
-numbers: List[int] = [randint(0, len(search_space)*2) for _ in range(100)]
+numbers: List[int] = [random.randint(0, len(search_space)*2) for _ in range(3)]
 
 
 if __name__ == "__main__":

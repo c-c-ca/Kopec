@@ -1,7 +1,7 @@
 from random import randint
 from timeit import timeit
 from textwrap import dedent
-from typing import List, Dict, Any
+from typing import List
 from generic_search import linear_contains, binary_contains
 
 

@@ -1,24 +1,19 @@
+from random import randint
 from timeit import timeit
 from textwrap import dedent
+from typing import List, Dict, Any
 from generic_search import linear_contains, binary_contains
 
 
-if __name__ == "__main__":
-    number: int = 100
-    print(timeit(
-        "linear_contains(l, n)", dedent("""
-        from random import randint
-        from generic_search import linear_contains
-        size = 1000000
-        l = list(range(size))
-        n = randint(0, size-1)"""),
-        number=number))
+search_space: List[int] = list(range(1000000))
+numbers: List[int] = [randint(0, len(search_space)*2) for _ in range(100)]
 
-    print(timeit(
-        "binary_contains(l, n)", dedent("""
-        from random import randint
-        from generic_search import binary_contains
-        size = 1000000
-        l = list(range(size))
-        n = randint(0, size-1)"""),
-        number=number))
+
+if __name__ == "__main__":
+    for contains in linear_contains, binary_contains:
+        print(f"{contains.__name__}:", timeit(dedent(f"""
+        for i in numbers:
+            {contains.__name__}(search_space, i)"""), dedent("""
+        from __main__ import search_space, numbers
+        from generic_search import linear_contains, binary_contains"""),
+        number=1))

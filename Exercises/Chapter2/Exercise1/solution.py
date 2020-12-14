@@ -13,7 +13,7 @@ if __name__ == "__main__":
     for contains in linear_contains, binary_contains:
         print(f"{contains.__name__}:", timeit(dedent(f"""
         for i in numbers:
-            {contains.__name__}(search_space, i)"""), dedent("""
+            {contains.__name__}(search_space, i)"""), dedent(f"""
         from __main__ import search_space, numbers
-        from generic_search import linear_contains, binary_contains"""),
+        from generic_search import {contains.__name__}"""),
         number=1))
